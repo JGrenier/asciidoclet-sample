@@ -1,0 +1,53 @@
+
+buildscript {
+    repositories {
+
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+    dependencies { 
+        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:0.1.11' 
+    }
+}
+
+ext {
+    expectedGradleVersion = '2.3'
+    javaLanguageLevel = '1.7'
+}
+
+apply plugin: "eclipse"
+apply plugin: 'java'
+apply plugin: 'com.github.jruby-gradle.base'
+
+configurations { asciidoclet }
+
+repositories {
+
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    asciidoclet 'org.asciidoctor:asciidoclet:1.+'
+    gems 'rubygems:asciidoctor-diagram:1.+'
+}
+
+
+javadoc {
+    dependsOn jrubyPrepareGems
+    options.docletpath = configurations.asciidoclet.files.asType(List)
+    options.doclet = 'org.asciidoctor.Asciidoclet'
+    options.overview = "src/main/java/overview.adoc"
+    options.addStringOption "-base-dir", "${projectDir}"
+    options.addStringOption "-attributes-file", "${projectDir}/config/javadoc-attributes.adoc"
+    options.addStringOption "-require", "asciidoctor-diagram"
+    options.addStringOption "-gem-path", "${jrubyPrepareGems.outputDir}"
+    options.addStringOption "-attribute", "data-uri," +
+            "name=${project.name}," +
+            "version=${project.version}," +
+            "title-link=http://example.com[${project.name} ${project.version}]"
+}
+
+

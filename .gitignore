@@ -1,0 +1,29 @@
+# Typically *NIX text editors, by default, append '~' to files on saving to make backups
+*~
+# Gradle work directory
+.gradle
+# propre à l'environnement
+gradle.properties
+# Build output directies
+/target
+*/target
+*/**/target
+/build
+*/build
+testdb
+
+# Eclipse specific files/directories
+.classpath
+.project
+.settings
+.metadata
+bin
+
+# Miscellaneous
+*.log
+.clover
+
+# Profiler and heap dumps
+*.jps
+*.hprof
+
