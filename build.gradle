@@ -41,10 +41,13 @@ javadoc {
     options.doclet = 'org.asciidoctor.Asciidoclet'
     options.overview = "src/main/java/overview.adoc"
     options.addStringOption "-base-dir", "${projectDir}"
+    options.addStringOption "encoding", "UTF-8"
     options.addStringOption "-attributes-file", "${projectDir}/config/javadoc-attributes.adoc"
     options.addStringOption "-require", "asciidoctor-diagram"
     options.addStringOption "-gem-path", "${jrubyPrepareGems.outputDir}"
-    options.addStringOption "-attribute", "data-uri," +
+    options.addStringOption "encoding","UTF-8"
+    options.addStringOption "charset","UTF-8"
+    options.addStringOption "-attribute",  "data-uri," +
             "name=${project.name}," +
             "version=${project.version}," +
             "title-link=http://example.com[${project.name} ${project.version}]"
