@@ -27,3 +27,5 @@ bin
 *.jps
 *.hprof
 
+.asciidoctor/
+
